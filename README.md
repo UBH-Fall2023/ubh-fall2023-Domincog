@@ -1,18 +1,46 @@
-Documentation:
+# Developer Documentation
 
-The goal of the project is to take in audio and convert it into text. After doing so, the validity of the text (what has been said) will be analyzed by OpenAI's GPT-3.5-Turbo (or GPT4). The validity will be determined. In the case of any misinformation, text to speech will be played clarifying the misinformatinon.
+## Overview
 
-## audio.py
+This project's function is to record and transcribe audio in real time, analyze the transcribed text for validity, and use text-to-speech to clarify any misinformation detected.
+
+## Modules and Functions
+
+### `audio.py`
+
+Responsible for audio capture and transcription.
+
 - Functions:
-  - 
-## tts.py
-- Functions:
-  -  `void text_to_wav(String text, String filename)`
-    -  Takes in an input `text` (first parameter) and converts it into an audio file of the tts. THe audio file will be saved at the location of `filename`.
-  - `void speak(String filename)`
-    - Speak takes in an input audio file and immidiately plays the audio.
+  - `void record_audio(int duration, String output_path)`
+    - Records live audio for a `duration` in seconds and saves it to `output_path`.
+  - `String transcribe(String audio_path)`
+    - Transcribes audio from `audio_path` into text and returns the string.
 
-## validity.py
+### `tts.py`
+
+Manages conversion from text to speech and playing audio files.
+
+- Functions:
+  - `void text_to_wav(String text, String filename)`
+    - Converts `text` into a TTS audio file and saves it to `filename`.
+  - `void play_audio(String filename)`
+    - Plays the audio file specified by `filename`.
+
+### `validity.py`
+
+Analyzes the transcribed text for validity and misinformation.
+
+- Functions:
+  - `Dictionary check_validity(String text)`
+    - Analyzes `text` and returns a dictionary with validity status and misinformation details.
+
+### `main.py`
+
+Orchestrates the use of functions from `audio.py`, `tts.py`, and `validity.py` to form the full program workflow.
+
+- Functions:
+  - `void main()`
+    - The entry point for the program to start the process.
 
 
 
