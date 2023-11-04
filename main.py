@@ -12,7 +12,7 @@ def main():
     while True:
         audio_file_path = "recording.wav"
         # Record audio and save as WAV file
-        record_audio(15, audio_file_path)
+        record_audio(12, audio_file_path)
         # Transcribe the audio file
         print("\nAbout to Transcribe")
         transcription = str(transcribe(audio_file_path)["text"])
