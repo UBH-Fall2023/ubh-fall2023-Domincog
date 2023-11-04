@@ -1,0 +1,13 @@
+You may need some dependencies to get this working:
+
+pyttsx3 requires you install espeak:
+
+Fedora: 
+
+sudo dnf install espeak
+
+Ubuntu / debian:
+
+sudo apt-get install espeak
+
+
