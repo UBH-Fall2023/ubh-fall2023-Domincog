@@ -14,8 +14,9 @@ def main():
         # Record audio and save as WAV file
         record_audio(15, audio_file_path)
         # Transcribe the audio file
+        print("\nAbout to Transcribe")
         transcription = str(transcribe(audio_file_path)["text"])
-        print(f"Transcription: {transcription}")
+        print(f"\nTranscription: {transcription}")
 
         # Check the validity of the transcribed text
         validity_result = check_validity(transcription)
