@@ -21,10 +21,10 @@ def check_validity(text):
     if "False" in response_text:
         return {"False": response_text}
     else:
-        return True
+        return {"True": response_text}
         
 def main():
-    test_text = "A dog is a species of bird. We have to set it so it, like, doesn't take as long."
+    test_text = "up 2 plus 2 equals 5"
     
     # Call the check_validity function with the test text
     result = check_validity(test_text)
