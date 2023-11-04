@@ -5,6 +5,9 @@ pyttsx3 requires you install espeak:
 Fedora: 
 
 sudo dnf install espeak
+sudo dnf install python3-devel
+sudo dnf install portaudio portaudio-devel
+
 
 Ubuntu / debian:
 

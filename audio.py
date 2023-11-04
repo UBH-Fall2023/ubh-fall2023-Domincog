@@ -45,8 +45,18 @@ def record_audio(duration, path):
 
 def transcribe(path):
     
-    openai.api_key = os.getenv("OPENAI_API_KEY")
+    openai.api_key = os.getenv("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")
     audio_file = open(path, "rb")
     transcript = openai.Audio.transcribe("whisper-1", audio_file) 
     return transcript
     
+    
+
+def main():
+    record_audio(30, "sound")
+    
+    
+
+
+if __name__ == "__main__":
+    main()
