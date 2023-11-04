@@ -1,5 +1,7 @@
 Documentation:
 
+The goal of the project is to take in audio and convert it into text. After doing so, the validity of the text (what has been said) will be analyzed by OpenAI's GPT-3.5-Turbo (or GPT4). The validity will be determined. In the case of any misinformation, text to speech will be played clarifying the misinformatinon.
+
 ## audio.py
 - Functions:
   - 
