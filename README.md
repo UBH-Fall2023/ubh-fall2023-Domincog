@@ -1,3 +1,24 @@
+Documentation:
+
+## audio.py
+- Functions:
+  - 
+## tts.py
+- Functions:
+  -  `void text_to_wav(String text, String filename)`
+    -  Takes in an input `text` (first parameter) and converts it into an audio file of the tts. THe audio file will be saved at the location of `filename`.
+  - `void speak(String filename)`
+    - Speak takes in an input audio file and immidiately plays the audio.
+
+## validity.py
+
+
+
+
+
+
+
+
 # UB Hacking Fall 2023 Rules 
 - Teams can consist of between 1 and 4 people.
 - To have your submission be considered for judging, you must submit a 2-5 minute video along with your project. Try to keep it as concise as possible!
