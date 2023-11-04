@@ -1,62 +1,66 @@
 import pyaudio
 import wave
-import ffmpeg
-import os
 import openai
 
-def record_audio(duration, path):
+def record_audio(duration, file_path):
     # Create a PyAudio instance.
     pa = pyaudio.PyAudio()
 
     # Open a stream for recording.
     stream = pa.open(
-        format=pyaudio.FORMAT_PCM16,
+        format=pyaudio.paInt16,
         channels=1,
         rate=44100,
-        input=True
+        input=True,
+        frames_per_buffer=1024
     )
 
     # Create a wave file for storing the recording.
-    wf = wave.open("recording.wav", "wb")
+    wf = wave.open(file_path, "wb")
     wf.setnchannels(1)
+    wf.setsampwidth(pa.get_sample_size(pyaudio.paInt16))
     wf.setframerate(44100)
 
     # Start recording.
-    for i in range(duration):
-        stream.read(44100)
+    frames_per_buffer = 1024
+    n_buffers = duration * 44100 // frames_per_buffer
+    for i in range(n_buffers):
+        data = stream.read(frames_per_buffer)
+        wf.writeframes(data)
 
-    # Stop recording.
+    # Stop and close the stream
     stream.stop_stream()
     stream.close()
+    pa.terminate()  # Terminate the PyAudio instance
 
     # Close the wave file.
     wf.close()
 
-    # Convert the WAV file to an MP3 file.
-    audiofile = "recording.mp3"
-    input_wav = "recording.wav"
-    (
-        ffmpeg.input(input_wav)
-        .output(audiofile)
-        .run(overwrite_output=True)
-    )
-    # Return the path to the generated MP3 file
-    return audiofile
+    # Return the path to the WAV file, no conversion to MP3
+    return file_path
 
-def transcribe(path):
+
+def transcribe(file_path):
+    # Get the OpenAI API key from the environment variable.
+    openai.api_key = "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"
+
+    # Read the audio file and transcribe it using OpenAI.
+    with open(file_path, "rb") as audio_file:
+        transcript = openai.Audio.transcribe(
+            model="whisper-1", 
+            file=audio_file
+        )
     
-    openai.api_key = os.getenv("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")
-    audio_file = open(path, "rb")
-    transcript = openai.Audio.transcribe("whisper-1", audio_file) 
     return transcript
-    
-    
+
 
 def main():
-    record_audio(30, "sound")
-    
-    
-
+    audio_file_path = "recording.wav"
+    # Record audio and save as WAV file
+    record_audio(10, audio_file_path)
+    # Transcribe the audio file
+    transcription = transcribe(audio_file_path)
+    print(transcription)
 
 if __name__ == "__main__":
     main()
