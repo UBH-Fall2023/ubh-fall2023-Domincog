@@ -2,8 +2,9 @@ import pyaudio
 import wave
 import ffmpeg
 import os
+import openai
 
-def record_and_convert_audio():
+def record_audio(duration, path):
     # Create a PyAudio instance.
     pa = pyaudio.PyAudio()
 
@@ -21,7 +22,7 @@ def record_and_convert_audio():
     wf.setframerate(44100)
 
     # Start recording.
-    for i in range(10):
+    for i in range(duration):
         stream.read(44100)
 
     # Stop recording.
@@ -42,6 +43,10 @@ def record_and_convert_audio():
     # Return the path to the generated MP3 file
     return audiofile
 
-if __name__ == "__main__":
-    audio_file_path = record_and_convert_audio()
-    print(f"Audio file saved at: {audio_file_path}")
+def transcribe(path):
+    
+    openai.api_key = os.getenv("OPENAI_API_KEY")
+    audio_file = open(path, "rb")
+    transcript = openai.Audio.transcribe("whisper-1", audio_file) 
+    return transcript
+    
