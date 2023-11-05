@@ -20,6 +20,10 @@ def check_validity(text):
 
     if "False" in response_text:
         return {"False": response_text}
+        
+    if "Break" in response_text:
+        return {"Break": response_text}
+    
     else:
         return {"True": response_text}
         
