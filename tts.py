@@ -1,5 +1,8 @@
 import pyttsx3
 from elevenlabs import generate, play, set_api_key
+from gtts import gTTS
+import os
+from playsound import playsound
 
 api_key = ""
 set_api_key(api_key)
@@ -16,12 +19,22 @@ def speak(text):
     # Generate the audio using the ElevenLabs API
     audio = generate(
         text=text,
-        voice="Bella",  # You can choose the voice you want
+        voice="Liam",  # You can ch0oose the voice you want
         model="eleven_multilingual_v2"  # Or "eleven_monolingual_v1" for English
     )
 
     # Play the generated audio
     play(audio)
+    
+
+
+def speak_google(text):
+    tts = gTTS(text=text, lang='en')
+    filename = "file.mp3"
+    tts.save(filename)
+    playsound(filename)
+
+
 
     
 
@@ -36,7 +49,8 @@ def main():
     # message = read_file('message.txt')
        
     # But for now, we will just say "hello world" directly.
-    speak("Joseph Biden lost the 2020 election.")
+    #speak("Joseph Biden lost the 2020 election.")
+    speak_google("Joseph Biden lost the 2020 election.")
 
 if __name__ == "__main__":
     main()

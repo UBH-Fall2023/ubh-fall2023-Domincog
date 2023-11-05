@@ -12,7 +12,7 @@ def main():
     while True:
         audio_file_path = "recording.wav"
         # Record audio and save as WAV file
-        record_audio(12, audio_file_path)
+        record_audio(11, audio_file_path)
         # Transcribe the audio file
         print("\nAbout to Transcribe")
         transcription = str(transcribe(audio_file_path)["text"])
@@ -25,7 +25,8 @@ def main():
         if 'True' not in validity_result:
             # It assumes that if 'True' is not a key, then 'False' will be, adjust as per your 'check_validity' function's logic
             false_message = validity_result.get('False', 'The statement is invalid, but no message was provided.')
-            speak(false_message)
+            #speak(false_message)
+            speak_google(false_message)
             print(false_message)
         #else:
             #speak("The statement is valid.")

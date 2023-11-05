@@ -3,3 +3,5 @@ pyaudio
 ffmpeg
 openai
 elevenlabs
+gtts
+playsound
