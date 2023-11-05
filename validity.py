@@ -2,7 +2,7 @@ import os
 import openai
 
 # Set the API key once, ideally from an environment variable for security
-openai.api_key = "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"
+openai.api_key = "API-KEY-HERE"
 
 def check_validity(text):
     prompt = f"Fact check: {text}"

@@ -42,7 +42,7 @@ def record_audio(duration, file_path):
 
 def transcribe(file_path):
     # Get the OpenAI API key from the environment variable.
-    openai.api_key = "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"
+    openai.api_key = "API-KEY-HERE"
 
     # Read the audio file and transcribe it using OpenAI.
     with open(file_path, "rb") as audio_file:
