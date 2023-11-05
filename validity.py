@@ -11,7 +11,7 @@ def check_validity(text):
     response = openai.ChatCompletion.create(
         model="gpt-4",
         messages=[
-            {"role": "system", "content": "You are a fact-checking assistant. Say False if the user's text is misleading in any way and then explain why in less than 2 sentences. If the statement lacks specific information to fact-check, or is directly subjective, simply say True."},
+            {"role": "system", "content": "You are a fact-checking assistant. Say False if the user's text is misleading in any way and then explain why in one sentence. If the statement lacks specific information to fact-check, simply say True."},
             {"role": "user", "content": prompt}
         ]
     )
